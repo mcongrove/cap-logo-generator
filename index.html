@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Civil Air Patrol Subordinate Logo Generator</title>
+    <title>Civil Air Patrol Subordinate Graphic Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="favicon.png">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +41,7 @@
 			const imageSource = new Image();
 
 			imageSource.onload = () => {
-				ctx.drawImage(imageSource, 0, 0, 2000, 330, 0, 0, 2000, 330);
+				ctx.drawImage(imageSource, 0, 0, 2000, 415, 0, 0, 2000, 415);
 			};
 
 			imageSource.src = 'source.svg';
@@ -54,24 +54,27 @@
 			fontSource.load().then((font) => {
 				document.fonts.add(font);
 
-				ctx.fillStyle = '#C10230';
-				ctx.font = '100px Rajdhani';
+				ctx.fillStyle = '#9EA2A2';
+				ctx.font = '136px Rajdhani';
 
-				text = str;
-				// text = 'David Lee "Tex" Hill Composite Squadron';
-				// text = 'U.S. Air Force Auxiliary';
+				text = str.toUpperCase();
+				// text = 'David Lee "Tex" Hill Composite Squadron'.toUpperCase();
+				// text = 'U.S. Air Force Auxiliary'.toUpperCase();
 				textWidth = ctx.measureText(text).width;
+				console.warn(textWidth)
 
-				if (textWidth > 1534) {
-					canvas.width = 466 + textWidth;
-
-					drawSource();
-
-					ctx.fillStyle = '#C10230';
-					ctx.font = '100px Rajdhani';
+				if (textWidth > 1410) {
+					canvas.width = 591 + textWidth;
+				} else {
+					canvas.width = 2000;
 				}
 
-				ctx.fillText(text, 466, 313);
+				drawSource();
+
+				ctx.fillStyle = '#9EA2A2';
+				ctx.font = '136px Rajdhani';
+
+				ctx.fillText(text, 591, 383);
 			});
 		};
 
@@ -79,7 +82,7 @@
 		const download = () => {
 			const tmpLink = document.createElement('a');
 			let e;
-			tmpLink.download = 'Logo.png';
+			tmpLink.download = 'Graphic.png';
 			tmpLink.href = canvas.toDataURL('image/png;base64');
 
 			// Create a "fake" click-event to trigger the download
@@ -159,7 +162,7 @@
 		}
 		h1 {
 			font-family: "Ubuntu", "Mier B", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-			color: rgb(186, 12, 47);
+			color: #001871;
 			font-size: 30px;
 			line-height: 1.3;
 			font-weight: 500;
@@ -181,7 +184,7 @@
 		}
 		.canvas-container {
 			width: 600px;
-			height: 139px;
+			height: 161px;
 			margin: 20px 0;
 		}
 		#canvas {
@@ -226,11 +229,11 @@
 <body>
 
 	<h1>
-		Civil Air Patrol Subordinate Logo Generator
+		Civil Air Patrol Subordinate Graphic Generator
 	</h1>
 
 	<p>
-		Using the tool below, you can generate a Civil Air Patrol subordinate unit, activity or program logo.
+		Using the tool below, you can generate a Civil Air Patrol subordinate unit, activity or program graphic.
 	</p>
 
 	<p>
@@ -241,21 +244,19 @@
 		Do not use or include a unit charter number (e.g. "SWR-TX-435").
 	</p>
 
-	<!--
 	<p>
-		Please refer to the <a href="https://company-214080.frontify.com/d/crhrf1Aw1Ci9">CAP Brand Portal</a> for additional information and guidance.
+		Please refer to the <a href="https://brand.gocivilairpatrol.com/">CAP Brand Portal</a> for additional information and guidance.
 	</p>
-	-->
 
 	<input id="text" type="text" placeholder="Insert Text Here" />
 
 	<div class="canvas-container">
-		<canvas id="canvas" width="2000" height="330"></canvas>
+		<canvas id="canvas" width="2000" height="415"></canvas>
 	</div>
 
 	<button id="download">Download</button>
 
-	<footer>Version 2. Last modified on October 8, 2021. Created by <a href="mailto:mcongrove@cap.gov">Lt Col Matthew Congrove</a>.</footer>
+	<footer>Version 3. Last modified on June 30, 2022. Created by <a href="mailto:mcongrove@cap.gov">Lt Col Matthew Congrove</a>.</footer>
 
 </body>
 </html>
